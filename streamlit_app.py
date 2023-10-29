@@ -46,3 +46,7 @@ streamlit.dataframe(my_data_rows)
 # Let's put a pick list from the table
 add_my_fruit = streamlit.text_input('What fruit would you like to add?','Jackfruit')
 streamlit.write('Thanks for entering ', add_my_fruit)
+
+#Inserito in tabella da streamlit
+my_cur.execute("insert into  FRUIT_LOAD_LIST values ('FromStreamlit')")
+my_cur.execute("commit")
