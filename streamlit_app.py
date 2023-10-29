@@ -1,7 +1,8 @@
-import streamlit
-import pandas
-import requests
-import snowflake.connector
+#import streamlit
+#import pandas
+#import requests
+#import snowflake.connector
+from urllib.error import URLError
 
 streamlit.title('My Parents New Healthy Diner')
 streamlit.header('Breakfast Favorites')
@@ -34,6 +35,8 @@ fruityvice_response = requests.get("https://fruityvice.com/api/fruit/"+fruit_cho
 fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
 # visualizzazione del json a video
 streamlit.dataframe(fruityvice_normalized)
+
+streamlit.stop()
 
 #Informazioni di connessione a snoflake
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
