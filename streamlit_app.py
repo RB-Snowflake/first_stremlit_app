@@ -25,3 +25,8 @@ streamlit.header("Fruityvice Fruit Advice!")
 
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
 streamlit.text(fruityvice_response.json())
+
+# spacchettamento del json 
+fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
+# visualizzazione del json a video
+streamlit.dataframe(fruityvice_normalized)
