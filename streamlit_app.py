@@ -30,6 +30,15 @@ streamlit.header("Fruityvice Fruit Advice!")
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/"+fruit_choice)
 #streamlit.text(fruityvice_response.json())
 
+#Informazioni di connessione a snoflake
+my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+my_cur = my_cnx.cursor()
+my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
+my_data_row = my_cur.fetchone()
+streamlit.text("Hello from Snowflake:")
+streamlit.text(my_data_row)
+
+
 # spacchettamento del json 
 fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
 # visualizzazione del json a video
